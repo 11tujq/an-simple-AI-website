@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Panel</h1>
+    </header>
+    <main>
+        <h2>Questions</h2>
+        <ul>
+            {% for question in questions %}
+                <li>
+                    <p><strong>Question:</strong> {{ question[1] }}</p>
+                    <p><strong>Answer:</strong> {{ question[2] }}</p>
+                    <form action="/answer_question" method="post">
+                        <input type="hidden" name="id" value="{{ question[0] }}">
+                        <textarea name="answer">{{ question[2] }}</textarea>
+                        <button type="submit">Submit Answer</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>
+
